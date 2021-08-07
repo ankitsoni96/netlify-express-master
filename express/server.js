@@ -19,7 +19,7 @@ router.get('/users',user.getUsers);
 
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
-app.use('/.netlify/functions/user',v1Route);
+app.use('/.netlify/functions/server/user',v1Route);
 // app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 
 module.exports = app;
