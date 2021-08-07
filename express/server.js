@@ -6,6 +6,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const user = require('./api/v1/controllers/user')
 const router = express.Router();
+const v1Route = require('./routes/v1Routes')
 // router.get('/', (req, res) => {
 //   res.writeHead(200, { 'Content-Type': 'text/html' });
 //   res.write('<h1>Hello from Express.js!</h1>');
@@ -18,6 +19,7 @@ router.get('/users',user.getUsers);
 
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
+app.use('/.netlify/functions/user',v1Route);
 // app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 
 module.exports = app;
