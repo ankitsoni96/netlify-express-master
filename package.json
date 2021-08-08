@@ -23,6 +23,7 @@
   "homepage": "https://github.com/neverendingqs/netlify-express#readme",
   "dependencies": {
     "bluebird": "^3.7.2",
+    "dotenv": "^10.0.0",
     "joi": "^17.4.2",
     "mongodb": "^4.1.0"
   },

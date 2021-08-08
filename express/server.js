@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const user = require('./api/v1/controllers/user')
 const router = express.Router();
 const DB = require('./api/utils/db');
+const env = require('dotenv').config()
 
 // router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 // router.post('/', (req, res) => res.json({ postBody: req.body }));

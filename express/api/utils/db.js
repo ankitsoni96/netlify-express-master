@@ -7,6 +7,10 @@ const mongo = require("mongodb").MongoClient;
 const objectID = require("mongodb").ObjectID;
 const promise = require("bluebird");
 let _db;
+var env = require('dotenv').config()
+
+
+const MONGODB_URI = process.env.MONGODB_URI;
 
 class DB {
     getMongoObjectId(id) {
@@ -16,7 +20,7 @@ class DB {
       connect() {
         return new promise((resolve, reject) => {
           mongo
-            .connect('mongodb+srv://mongo:root@cluster0.xopxo.mongodb.net/test', { useNewUrlParser: true })
+            .connect(MONGODB_URI, { useNewUrlParser: true })
             .then((db) => {
               _db = db.db('login-system');
               console.log("DB connected");
