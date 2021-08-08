@@ -6,20 +6,24 @@ const app = express();
 const bodyParser = require('body-parser');
 const user = require('./api/v1/controllers/user')
 const router = express.Router();
-const v1Route = require('./routes/v1Routes')
-// router.get('/', (req, res) => {
-//   res.writeHead(200, { 'Content-Type': 'text/html' });
-//   res.write('<h1>Hello from Express.js!</h1>');
-//   res.end();
-// });
-router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
-router.post('/', (req, res) => res.json({ postBody: req.body }));
+const DB = require('./api/utils/db');
 
-router.get('/users',user.getUsers);
+// router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
+// router.post('/', (req, res) => res.json({ postBody: req.body }));
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
-app.use(bodyParser.json());
+
+
+router.post('/register',user.register);
+// router.post('/login',user.getUsers);
+// router.post('/search',user.getUsers);
+// router.get('/logout',user.getUsers);
+
+
+DB.connect()
+
 app.use('/.netlify/functions/server', router);  // path must route to lambda
-app.use('/.netlify/functions/server/user',v1Route);
 // app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 
 module.exports = app;
